@@ -1,0 +1,14 @@
+# https://stackoverflow.com/questions/49289009/during-local-development-with-kubernetes-minikube-how-should-i-connect-to-postg
+# Exposes Postgres that runs outside of Minikube
+kind: Service
+apiVersion: v1
+metadata:
+  name: postgres
+  namespace: default
+spec:
+  type: ExternalName
+  # https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds
+  externalName: host.docker.internal
+  ports:
+    - name: port
+      port: 5432

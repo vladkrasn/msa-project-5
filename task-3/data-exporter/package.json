@@ -1,0 +1,17 @@
+{
+  "name": "data-exporter",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "^1.2.21"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@types/nodemailer": "^7.0.1",
+    "export-to-csv": "^1.4.0",
+    "nodemailer": "^7.0.6"
+  }
+}

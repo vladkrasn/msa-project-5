@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: data-export-job
+spec:
+  schedule: "0 20 * * *" # Daily at 20
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: data-exporter
+            image: data-exporter
+            imagePullPolicy: Never
+          restartPolicy: Never
