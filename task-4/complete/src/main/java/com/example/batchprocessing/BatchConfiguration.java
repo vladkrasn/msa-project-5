@@ -11,11 +11,9 @@ import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
@@ -60,9 +58,9 @@ public class BatchConfiguration {
 					  FlatFileItemReader<Product> reader, ProductItemProcessor processor, JdbcBatchItemWriter<Product> writer) {
 		return new StepBuilder("step1", jobRepository)
 			.<Product, Product>chunk(3, transactionManager)
-			.reader(reader)
-			.processor(processor)
-			.writer(writer)
+			.reader(reader) // Read csv with FlatFileItemReader in this file
+			.processor(processor) // Transform data in ProductItemProcessor in ProductItemProcessor.java
+			.writer(writer) // Insert data into table with JdbcBatchItemWriter in this file
 			.build();
 	}
 
